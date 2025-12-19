@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface AccountRepository extends ReactiveCrudRepository<Account, Long> {
+    Mono<Boolean> existsByAccountNumber(String accountNumber);
 
     Flux<Account> findAllByActiveTrue();
 

@@ -1,4 +1,4 @@
-package com.example.Prueba_Tecnica.config;
+package com.example.Prueba_Tecnica.Config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
