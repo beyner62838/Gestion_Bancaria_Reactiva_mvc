@@ -34,7 +34,7 @@ class ClientServiceTest {
 
         client = Client.builder()
                 .id(1L)
-                .identificationType("CC")
+                .identificationType(IdentificationType.CC)
                 .identificationNumber("123")
                 .firstName("Pepe")
                 .lastName("Perez")
@@ -47,7 +47,7 @@ class ClientServiceTest {
     @Test
     void shouldCreateClientWhenNotExists() {
         ClientDTO dto = ClientDTO.builder()
-                .identificationType("CC")
+                .identificationType(IdentificationType.CE)
                 .identificationNumber("123")
                 .firstName("Pepe")
                 .lastName("Perez")

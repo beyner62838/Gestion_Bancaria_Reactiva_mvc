@@ -20,6 +20,7 @@ services:
       timeout: 5s
       retries: 5
 
+
   backend:
     build: .
     container_name: backend
@@ -34,6 +35,8 @@ services:
       SPRING_R2DBC_PASSWORD: postgres
       SERVER_PORT: 8080
     restart: always
+
+
 
 volumes:
   postgres_data:

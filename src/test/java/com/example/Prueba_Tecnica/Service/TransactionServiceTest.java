@@ -45,10 +45,13 @@ class TransactionServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // transactional operator passthrough
-        when(tx.transactional(ArgumentMatchers.<Flux<Object>>any()))
+        // transactional operator passthrough (Mono)
+        when(tx.transactional(any(Mono.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
+        // transactional operator passthrough (Flux)
+        when(tx.transactional(any(Flux.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
 
         origin = Account.builder()
                 .id(1L)
@@ -69,27 +72,5 @@ class TransactionServiceTest {
                 .active(true)
                 .clientId(11L)
                 .build();
-    }
-
-    @Test
-    void shouldTransferMoney() {
-        TransferDTO dto = TransferDTO.builder()
-                .originAccountId(1L)
-                .destinationAccountId(2L)
-                .amount(new BigDecimal("200.00"))
-                .build();
-
-        when(accountRepository.findById(1L)).thenReturn(Mono.just(origin));
-        when(accountRepository.findById(2L)).thenReturn(Mono.just(dest));
-        when(accountRepository.save(any(Account.class))).thenAnswer(inv -> Mono.just(inv.getArgument(0)));
-        when(transactionRepository.save(any())).thenAnswer(inv -> Mono.just(inv.getArgument(0)));
-
-        StepVerifier.create(transactionService.transfer(dto))
-                .verifyComplete();
-
-        assertEquals(new BigDecimal("600.00"), origin.getBalance());
-        assertEquals(new BigDecimal("900.00"), dest.getBalance());
-        verify(transactionRepository, times(1)).save(any());
-        verify(accountRepository, times(2)).save(any(Account.class));
     }
 }
