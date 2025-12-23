@@ -21,8 +21,7 @@ Base URL:
 http://localhost:8080
 
 Accounts
-
-Tú confirmaste que manejas /api/accounts.
+ /api/accounts.
 
 GET /api/accounts
 Lista cuentas (reactivo: Flux).
@@ -37,11 +36,10 @@ PUT /api/accounts/{accountId}
 Actualiza una cuenta.
 
 DELETE /api/accounts/{accountId}
-Elimina una cuenta (o la desactiva, según tu lógica).
+Elimina una cuenta (Borrado Logico)
 
 Transactions
-
-Confirmado por tu API: POST /api/transactions/transfer.
+POST /api/transactions/transfer.
 
 POST /api/transactions/transfer
 Transfiere dinero de una cuenta origen a una cuenta destino.
