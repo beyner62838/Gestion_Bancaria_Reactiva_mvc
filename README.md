@@ -9,7 +9,6 @@ Comandos:
 ./mvnw clean package -DskipTests
 ./mvnw spring-boot:run
 
-
 La API quedará disponible en:
 
 http://localhost:8080
